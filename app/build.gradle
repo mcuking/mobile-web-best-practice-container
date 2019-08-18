@@ -7,7 +7,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,7 +21,7 @@ android {
         variant ->
             variant.outputs.all {
                 //这里修改apk文件名
-                outputFileName = "${variant.name}_v${variant.versionName}_${releaseTime()}.apk"
+                outputFileName = "mwbpcontainer_v${variant.versionName}_${releaseTime()}.apk"
             }
     }
 }
