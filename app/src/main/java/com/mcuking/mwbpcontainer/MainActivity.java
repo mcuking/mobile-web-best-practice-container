@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 mWebSettings.getUserAgentString() + " " + getString(R.string.user_agent_suffix)
         );
 
-        mWebview.loadUrl("http://192.168.27.115:8082");
+        mWebview.loadUrl("https://mcuking.github.io/mobile-web-best-practice");
     }
 
     // 复写安卓返回事件 转为响应 h5 返回
