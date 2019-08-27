@@ -1,6 +1,8 @@
 package com.mcuking.mwbpcontainer;
 
 import android.Manifest;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,10 +64,22 @@ public class MainActivity extends AppCompatActivity {
         // 使用WebView中缓存
         mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+        // 获取 app 版本
+        PackageManager packageManager = getPackageManager();
+        PackageInfo packInfo = null;
+        try {
+            // getPackageName()是你当前类的包名，0代表是获取版本信息
+            packInfo = packageManager.getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String appVersion = packInfo.versionName;
 
-        // 修改 UA 以便区分 h5 环境
+        // 获取系统版本
+        String systemVersion = android.os.Build.VERSION.RELEASE;
+
         mWebSettings.setUserAgentString(
-                mWebSettings.getUserAgentString() + " " + getString(R.string.user_agent_suffix)
+                mWebSettings.getUserAgentString() + " DSBRIDGE_"  + appVersion + "_" + systemVersion + "_android"
         );
 
         mWebview.loadUrl("https://mcuking.github.io/mobile-web-best-practice");

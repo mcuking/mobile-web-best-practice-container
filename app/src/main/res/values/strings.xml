@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">MWBPContainer</string>
-    <string name="user_agent_suffix">MWBPContainer/android</string>
 </resources>
