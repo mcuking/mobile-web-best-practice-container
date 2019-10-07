@@ -114,7 +114,7 @@ public class CalendarReminderUtils {
      * 6003: '日程添加失败',
      * 6004: '日程提醒功能添加失败',
      */
-    public static String addCalendarEvent(String id, String title, String location, long startTime, long endTime, JSONArray earlyRemindTime) throws JSONException {
+    public static String addCalendarEvent(String id, String title, long deadline, JSONArray earlyRemindTime) throws JSONException {
 
         if (context == null) {
             return "6001";
@@ -133,22 +133,19 @@ public class CalendarReminderUtils {
         //添加日历事件
         Calendar mCalendar = Calendar.getInstance();
 
-        mCalendar.setTimeInMillis(startTime);//设置开始时间
-        long start = mCalendar.getTime().getTime();
-
-        mCalendar.setTimeInMillis(endTime);
-        long end = mCalendar.getTime().getTime();
+        mCalendar.setTimeInMillis(deadline); //设置截止时间
+        long endTime = mCalendar.getTime().getTime();
 
         ContentValues event = new ContentValues();
         event.put("calendar_id", calId); //插入账户的id
         event.put("title", title);
         event.put("description", id);
-        event.put(CalendarContract.Events.EVENT_LOCATION, location);
-        event.put(CalendarContract.Events.DTSTART, start);
-        event.put(CalendarContract.Events.DTEND, end);
-        event.put(CalendarContract.Events.HAS_ALARM, 1);//设置有闹钟提醒
-        event.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Shanghai");//这个是时区，必须有
+        event.put(CalendarContract.Events.DTSTART, endTime);
+        event.put(CalendarContract.Events.DTEND, endTime);
+        event.put(CalendarContract.Events.HAS_ALARM, 1); //设置有闹钟提醒
+        event.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Shanghai"); //这个是时区，必须有
         Uri newEvent = context.getContentResolver().insert(Uri.parse(CALENDER_EVENT_URL), event); //添加事件
+        Log.d(TAG, "event:" + newEvent);
         if (newEvent == null) { //添加日历事件失败直接返回
             return "6003";
         }

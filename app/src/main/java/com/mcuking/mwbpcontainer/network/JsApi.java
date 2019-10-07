@@ -31,11 +31,9 @@ public class JsApi {
             JSONObject obj = new JSONObject(msg.toString());
             String id = obj.getString("id");
             String title = obj.getString("title");
-            String location = obj.getString("location");
-            long startTime = obj.getLong("startTime");
-            long endTime = obj.getLong("endTime");
+            long deadline = obj.getLong("deadline");
             JSONArray earlyRemindTime = obj.getJSONArray("alarm");
-            String res = CalendarReminderUtils.addCalendarEvent(id, title, location, startTime, endTime, earlyRemindTime);
+            String res = CalendarReminderUtils.addCalendarEvent(id, title, deadline, earlyRemindTime);
             handler.complete(Integer.valueOf(res));
         } catch (Exception e) {
             e.printStackTrace();
