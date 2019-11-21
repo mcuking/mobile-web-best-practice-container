@@ -1,8 +1,26 @@
 # mobile-web-best-practice-container
 
-为 [mobile-web-best-practice](https://github.com/mcuking/mobile-web-best-practice) 提供演示相关功能的安卓项目。
+H5 容器
 
-目前有如下功能：
+## Hybrid App 架构：
+
+<img src="./assets/architecture.png" width=600/>
+
+包含以下几个方面：
+
+1. JS 通信及 API 设计
+
+2. 离线包设计
+
+#### 相关项目：
+
+H5 项目： [mobile-web-best-practice](https://github.com/mcuking/mobile-web-best-practice)
+
+离线包管理平台：[offline-package-admin](https://github.com/mcuking/offline-package-admin)
+
+离线包 webpack 插件：[offline-package-webpack-plugin](https://github.com/mcuking/offline-package-webpack-plugin)
+
+## 已有功能：
 
 1. 集成 [DSBridge-Android](https://github.com/wendux/DSBridge-Android)
 
