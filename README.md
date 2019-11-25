@@ -12,7 +12,7 @@ H5 容器
 
 2. 离线包设计
 
-#### 相关项目：
+#### 相关项目
 
 H5 项目： [mobile-web-best-practice](https://github.com/mcuking/mobile-web-best-practice)
 
@@ -20,7 +20,19 @@ H5 项目： [mobile-web-best-practice](https://github.com/mcuking/mobile-web-be
 
 离线包 webpack 插件：[offline-package-webpack-plugin](https://github.com/mcuking/offline-package-webpack-plugin)
 
-## 已有功能：
+## JS 通信及 API 设计
+
+todo
+
+## 离线包设计
+
+原理如下图所示：
+
+<img src="./assets/principle.png" width=600/>
+
+todo
+
+## 已有功能
 
 1. 集成 [DSBridge-Android](https://github.com/wendux/DSBridge-Android)
 
