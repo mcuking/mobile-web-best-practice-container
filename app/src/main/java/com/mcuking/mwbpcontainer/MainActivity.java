@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mWebview.addJavascriptObject(new JsApi(), null);
 
         // 可复写 WebviewClient 类
-        mWebview.setWebViewClient((new WebViewClient()));
+        mWebview.setWebViewClient(new WebViewClient());
 
         // 可复写 WebviewChromeClient
         mWebview.setWebChromeClient(new WebChromeClient());
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 mWebSettings.getUserAgentString() + " DSBRIDGE_"  + appVersion + "_" + systemVersion + "_android"
         );
 
-        mWebview.loadUrl("https://mcuking.github.io/mobile-web-best-practice");
+        mWebview.loadUrl("http://www.mcuking.club/");
     }
 
     // 复写安卓返回事件 转为响应 h5 返回
