@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebViewClient;
 import android.view.KeyEvent;
 import android.view.View;
 import android.graphics.Color;
+import com.hht.webpackagekit.OfflineWebViewClient;
 
 import com.mcuking.mwbpcontainer.network.JsApi;
 
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         // 向 js 环境注入 ds_bridge
         mWebview.addJavascriptObject(new JsApi(), null);
 
-        // 可复写 WebviewClient 类
-        mWebview.setWebViewClient(new WebViewClient());
+        // 复写 WebviewClient 类
+        mWebview.setWebViewClient(new OfflineWebViewClient());
 
         // 可复写 WebviewChromeClient
         mWebview.setWebChromeClient(new WebChromeClient());
