@@ -30,7 +30,9 @@ todo
 
 <img src="./assets/principle.png" width=600/>
 
-todo
+整体方案说明文章：
+
+[Hybrid App 离线包方案实践](https://github.com/mcuking/blog/issues/63)
 
 ## 已有功能
 
