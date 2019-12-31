@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         // 使用WebView中缓存
         mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+        // 支持 Chrome 调试
+        mWebview.setWebContentsDebuggingEnabled(true);
+
         // 获取 app 版本
         PackageManager packageManager = getPackageManager();
         PackageInfo packInfo = null;
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 mWebSettings.getUserAgentString() + " DSBRIDGE_"  + appVersion + "_" + systemVersion + "_android"
         );
 
-        mWebview.loadUrl("http://www.mcuking.club/");
+        mWebview.loadUrl("https://www.mcuking.club/");
     }
 
     // 复写安卓返回事件 转为响应 h5 返回
