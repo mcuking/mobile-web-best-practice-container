@@ -3,18 +3,16 @@ package com.mcuking.mwbpcontainer;
 import android.Manifest;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.view.KeyEvent;
 import android.view.View;
-import android.graphics.Color;
-import com.hht.webpackagekit.OfflineWebViewClient;
 
 import com.mcuking.mwbpcontainer.network.JsApi;
+import com.hht.webpackagekit.OfflineWebViewClient;
 
 import wendu.dsbridge.DWebView;
 
@@ -30,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Window window = getWindow();
-
-        // Activity 全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity 顶端布局部分会被状态遮住
         int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        window.getDecorView().setSystemUiVisibility(option);
+        getWindow().getDecorView().setSystemUiVisibility(option);
 
-        window.setStatusBarColor(Color.TRANSPARENT);
+        // 设置状态栏背景色和字体颜色
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+
+
 
         // 请求获取日历权限
         requestPermission();
