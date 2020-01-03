@@ -12,7 +12,7 @@ public class PackageInfo {
   private String module_name;
 
   //离线包版本号
-  private String version = "1";
+  private String version;
 
   //离线包的状态 {@link PackageStatus}
   private int status = PackageStatus.onLine;
