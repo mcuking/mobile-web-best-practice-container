@@ -89,7 +89,11 @@ public class PackageManager {
         resourceManager = new ResourceManagerImpl(context);
         packageInstaller = new PackageInstallerImpl(context);
         FileDownloader.init(context);
-        if (config.isEnableAssets() && !TextUtils.isEmpty(config.getAssetPath())) {
+
+        String packageIndexFileName = FileUtils.getPackageIndexFileName(context);
+        File packageIndexFile = new File(packageIndexFileName);
+
+        if (config.isEnableAssets() && !TextUtils.isEmpty(config.getAssetPath()) && !packageIndexFile.exists()) {
             assetResourceLoader = new AssetResourceLoaderImpl(context);
             ensurePackageThread();
             packageHandler.sendEmptyMessage(WHAT_INIT_ASSETS);
@@ -132,6 +136,7 @@ public class PackageManager {
           return;
         }
         Log.d("PKGM2", packageInfo.getPackageId());
+        Log.d("performLoadAssets", "installPackage");
         installPackage(packageInfo.getPackageId(), packageInfo, true);
       }
     }
@@ -179,6 +184,7 @@ public class PackageManager {
 
         if (onlyUpdatePackageInfoList != null && onlyUpdatePackageInfoList.size() > 0) {
             for (PackageInfo packageInfo : onlyUpdatePackageInfoList) {
+                Log.d("performUpdate", packageInfo.getVersion());
                 resourceManager.updateResource(packageInfo.getPackageId(), packageInfo.getVersion());
                 synchronized (packageStatusMap) {
                     packageStatusMap.put(packageInfo.getPackageId(), STATUS_PACKAGE_CANUSE);
@@ -204,6 +210,8 @@ public class PackageManager {
         }
         int index = 0;
         for (PackageInfo localPackageInfo : localPackageEntity.getItems()) {
+            Log.d("localVersion", localPackageInfo.getVersion());
+
             // 如果本地 packageIndex 的某个包 localPackageInfo 不在从服务器拉下来的 packageIndex 中，则跳出本次循环
             if ((index = willDownloadPackageInfoList.indexOf(localPackageInfo)) < 0) {
                 continue;
@@ -248,7 +256,7 @@ public class PackageManager {
 
     //更新packageIndex.json中packageId对应的离线包版本
     private void updatePackageIndexFile(String packageId, String version) {
-        Log.d("PKGM", "updatePackageIndexFile");
+        Log.d("updatePackageIndexFile1", packageId + "|"+version);
         String packageIndexFileName = FileUtils.getPackageIndexFileName(context);
         File packageIndexFile = new File(packageIndexFileName);
         //若不存在packageIndex.json，则创建一个packageIndex.json
@@ -376,6 +384,7 @@ public class PackageManager {
                 resourceLock.unlock();
                 //安装失败情况下，不做任何处理，因为资源既然资源需要最新资源，失败了，就没有必要再用缓存了
                 if (isSuccess) {
+                    Log.d("installPackage", "version" + packageInfo.getVersion() + "| isAssets " + isAssets );
                     resourceManager.updateResource(packageInfo.getPackageId(), packageInfo.getVersion());
                     //更新安装成功的离线包版本到packageIndex.json
                     updatePackageIndexFile(packageInfo.getPackageId(), packageInfo.getVersion());
@@ -400,6 +409,7 @@ public class PackageManager {
             packageInfo = willDownloadPackageInfoList.remove(pos);
         }
         allResouceUpdateFinished();
+        Log.d("performDownloadSuccess", "installPackage");
         installPackage(packageId, packageInfo, false);
     }
 
