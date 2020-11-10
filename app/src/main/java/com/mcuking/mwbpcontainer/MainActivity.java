@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 mWebSettings.getUserAgentString() + " DSBRIDGE_"  + appVersion + "_" + systemVersion + "_android"
         );
 
-        mWebview.loadUrl("https://www.mcuking.club/");
+        mWebview.loadUrl("http://122.51.132.117/");
     }
 
     // 复写安卓返回事件 转为响应 h5 返回
