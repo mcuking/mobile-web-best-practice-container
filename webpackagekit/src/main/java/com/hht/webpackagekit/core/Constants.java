@@ -7,7 +7,7 @@ public class Constants {
    public static String[] LOCAL_ASSET_LIST = {"main.zip"};
 
    // 服务器地址
-   public static final String BASE_URL = "http://www.mcuking.club:5002";
+   public static final String BASE_URL = "http://122.51.132.117:5002";
 
     // package.json请求地址
     public static final String BASE_PACKAGE_INDEX = BASE_URL + "/getPackageIndex?appName=mwbp";
