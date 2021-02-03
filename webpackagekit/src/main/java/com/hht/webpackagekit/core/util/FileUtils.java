@@ -356,7 +356,7 @@ public class FileUtils {
     }
 
     /***
-     * 获取预置在assets文件下的离线包当前存储的路径
+     * 获取预置的离线包被拷贝到指定目录的路径
      * */
     public static String getPackageAssetsName(Context context, String packageId, String version) {
         String root = getPackageRootPath(context);
