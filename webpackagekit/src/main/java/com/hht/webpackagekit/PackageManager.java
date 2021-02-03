@@ -234,17 +234,22 @@ public class PackageManager {
                 }
                 localPackageInfo.setStatus(packageInfo.getStatus());
             } else {
+                if ((Integer.parseInt(packageInfo.getVersion()) - Integer.parseInt(localPackageInfo.getVersion()) > 1)) {
+                    // 如果远端离线包版本比本地离线包版本高出 1 个版本，则下载全量包
+                    packageInfo.setDownloadUrl(packageInfo.getOrigin_file_path());
+                    packageInfo.setIsPatch(false);
+                    packageInfo.setMd5(packageInfo.getOrigin_file_md5());
+                } else {
+                    // 否则表示远端离线包版本和本地离线包版本仅差 1 各版本，则下载差量包
+                    // 注意：本项目的离线包平台仅对相邻的版本做差量包，读者可以根据自己的需求，设置远端和本地离线包版本相差多少以内，才会使用离线包，
+                    // 然后修改两处：1. 这里的版本比对逻辑 2. 离线包管理平台的计算差量包相关逻辑
+                    packageInfo.setDownloadUrl(packageInfo.getPatch_file_path());
+                    packageInfo.setIsPatch(true);
+                    packageInfo.setMd5(packageInfo.getPatch_file_md5());
+                }
+
                 localPackageInfo.setStatus(packageInfo.getStatus());
                 localPackageInfo.setVersion(packageInfo.getVersion());
-                if ((Integer.parseInt(packageInfo.getVersion()) - Integer.parseInt(localPackageInfo.getVersion()) > 1)) {
-                  packageInfo.setDownloadUrl(packageInfo.getOrigin_file_path());
-                  packageInfo.setIsPatch(false);
-                  packageInfo.setMd5(packageInfo.getOrigin_file_md5());
-                } else {
-                  packageInfo.setDownloadUrl(packageInfo.getPatch_file_path());
-                  packageInfo.setIsPatch(true);
-                  packageInfo.setMd5(packageInfo.getPatch_file_md5());
-                }
             }
         }
     }
