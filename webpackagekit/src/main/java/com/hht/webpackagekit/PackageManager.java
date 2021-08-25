@@ -171,6 +171,9 @@ public class PackageManager {
             if (packageInfo.getStatus() == PackageStatus.offLine) {
                 continue;
             }
+            if(TextUtils.isEmpty(packageInfo.getDownloadUrl())){
+                packageInfo.setDownloadUrl(packageInfo.getOrigin_file_path());
+            }
             packageInfoList.add(packageInfo);
         }
         willDownloadPackageInfoList.clear();
