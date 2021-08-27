@@ -1,10 +1,8 @@
 # mobile-web-best-practice-container
 
-H5 容器
-
 ## Hybrid App 架构：
 
-<img src="./assets/architecture.png" width=600/>
+<img src="https://i.loli.net/2021/08/27/JcxMfSwPeTr8isa.png" width=600/>
 
 包含以下几个方面：
 
@@ -20,15 +18,11 @@ H5 项目： [mobile-web-best-practice](https://github.com/mcuking/mobile-web-be
 
 离线包 webpack 插件：[offline-package-webpack-plugin](https://github.com/mcuking/offline-package-webpack-plugin)
 
-## JS 通信及 API 设计
-
-todo
-
-## 离线包设计
+## 离线包方案
 
 原理如下图所示：
 
-<img src="./assets/principle.png" width=600/>
+<img src="https://i.loli.net/2021/08/27/CcBaEklTuo4Nsj7.png" width=600/>
 
 整体方案说明文章：
 
