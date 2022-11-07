@@ -7,7 +7,7 @@ import java.util.List;
  * mimeType工具类
  */
 public class MimeTypeUtils {
-    private static List<String> supportMineTypeList = new ArrayList<>(2);
+    private static final List<String> supportMineTypeList = new ArrayList<>(2);
 
     static {
         supportMineTypeList.add("application/x-javascript");

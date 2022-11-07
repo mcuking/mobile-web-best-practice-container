@@ -9,9 +9,9 @@ import java.util.List;
  * 资源请求键
  */
 public class ResourceKey {
-    private String host;
-    private String schema;
-    private List<String> pathList;
+    private final String host;
+    private final String schema;
+    private final List<String> pathList;
 
     public ResourceKey(String url) {
         Uri uri = Uri.parse(url);

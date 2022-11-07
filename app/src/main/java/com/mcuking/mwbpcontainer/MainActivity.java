@@ -1,6 +1,7 @@
 package com.mcuking.mwbpcontainer;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
@@ -16,11 +17,9 @@ import com.hht.webpackagekit.OfflineWebViewClient;
 
 import wendu.dsbridge.DWebView;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class MainActivity extends AppCompatActivity {
     private DWebView mWebview;
-
-    private WebSettings mWebSettings;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +33,12 @@ public class MainActivity extends AppCompatActivity {
         // 设置状态栏背景色和字体颜色
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-
-
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, getTheme()));
 
         // 请求获取日历权限
         requestPermission();
 
-        mWebview = (DWebView) findViewById(R.id.mWebview);
+        mWebview = findViewById(R.id.mWebview);
 
         // 向 js 环境注入 ds_bridge
         mWebview.addJavascriptObject(new JsApi(), null);
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // 可复写 WebviewChromeClient
         mWebview.setWebChromeClient(new WebChromeClient());
 
-        mWebSettings = mWebview.getSettings();
+        WebSettings mWebSettings = mWebview.getSettings();
 
         // 如果访问的页面中要与Javascript交互，则WebView必须设置支持Javascript
         mWebSettings.setJavaScriptEnabled(true);
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
         // 支持 Chrome 调试
-        mWebview.setWebContentsDebuggingEnabled(true);
+        DWebView.setWebContentsDebuggingEnabled(true);
 
         // 获取 app 版本
         PackageManager packageManager = getPackageManager();
@@ -76,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        assert packInfo != null;
         String appVersion = packInfo.versionName;
 
         // 获取系统版本
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 mWebSettings.getUserAgentString() + " DSBRIDGE_"  + appVersion + "_" + systemVersion + "_android"
         );
 
-        mWebview.loadUrl("http://122.51.132.117/");
+        mWebview.loadUrl("https://mcuking.github.io/mobile-web-best-practice/");
     }
 
     // 复写安卓返回事件 转为响应 h5 返回

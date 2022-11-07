@@ -33,9 +33,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * 资源管理类实现
  */
 public class ResourceManagerImpl implements ResourceManager {
-    private Map<ResourceKey, ResourceInfo> resourceInfoMap;
-    private Context context;
-    private Lock lock;
+    private final Map<ResourceKey, ResourceInfo> resourceInfoMap;
+    private final Context context;
+    private final Lock lock;
     private ResoureceValidator validator;
 
     public ResourceManagerImpl(Context context) {

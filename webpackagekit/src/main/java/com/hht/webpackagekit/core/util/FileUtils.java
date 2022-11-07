@@ -438,11 +438,7 @@ public class FileUtils {
     public static boolean deleteFile(String fileName) {
         File file = new File(fileName);
         if (file.exists() && file.isFile()) {
-            if (file.delete()) {
-                return true;
-            } else {
-                return false;
-            }
+            return file.delete();
         } else {
             return true;
         }
