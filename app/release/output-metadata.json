@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.mcuking.mwbpcontainer",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 138,
+      "versionName": "1.3.8",
+      "outputFile": "mwbpcontainer_v1.3.8_221107.apk"
+    }
+  ],
+  "elementType": "File"
+}
