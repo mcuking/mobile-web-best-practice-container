@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.mcuking.mwbpcontainer"
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 138
         versionName "1.3.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -19,6 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'com.mcuking.mwbpcontainer'
 
     android.applicationVariants.all {
         variant ->

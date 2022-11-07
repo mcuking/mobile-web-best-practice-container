@@ -65,9 +65,9 @@ public class PackageManager {
     private List<PackageInfo> willDownloadPackageInfoList;
     //需要更新的离线包资源PackageInfo的集合
     private List<PackageInfo> onlyUpdatePackageInfoList;
-    private Lock resourceLock;
-    private Map<String, Integer> packageStatusMap = new HashMap<>();
-    private PackageConfig config = new PackageConfig();
+    private final Lock resourceLock;
+    private final Map<String, Integer> packageStatusMap = new HashMap<>();
+    private final PackageConfig config = new PackageConfig();
 
 
     public static synchronized PackageManager getInstance(){
@@ -149,10 +149,7 @@ public class PackageManager {
         File localPackageIndexFile = new File(localPackageIndexFileName);
 
         //是否是第一次加载离线包
-        boolean isFirstLoadPackage = false;
-        if (!localPackageIndexFile.exists()) {
-            isFirstLoadPackage = true;
-        }
+        boolean isFirstLoadPackage = !localPackageIndexFile.exists();
 
         //将从服务端拉取的packageIndex.json中离线包数组信息转化成willDownloadPackageInfoList数组
         PackageEntity packageEntity = null;
@@ -470,7 +467,7 @@ public class PackageManager {
     }
 
     static class DownloadCallback implements Downloader.DownloadCallback {
-        private PackageManager packageManager;
+        private final PackageManager packageManager;
 
         public DownloadCallback(PackageManager packageManager) {
             this.packageManager = packageManager;

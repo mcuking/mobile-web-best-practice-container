@@ -23,7 +23,7 @@ import java.util.List;
  * 单个离线包安装器
  */
 public class PackageInstallerImpl implements PackageInstaller {
-    private Context context;
+    private final Context context;
     private final static String TAG = "PackageInstallerImpl";
 
     public PackageInstallerImpl(Context context) {
@@ -125,7 +125,7 @@ public class PackageInstallerImpl implements PackageInstaller {
     }
     MessageDigest digest = null;
     FileInputStream in = null;
-    byte buffer[] = new byte[1024];
+    byte[] buffer = new byte[1024];
     int len;
     try {
       digest = MessageDigest.getInstance("MD5");
@@ -142,7 +142,7 @@ public class PackageInstallerImpl implements PackageInstaller {
   }
 
   public static String bytesToHexString(byte[] src) {
-    StringBuilder stringBuilder = new StringBuilder("");
+    StringBuilder stringBuilder = new StringBuilder();
     if (src == null || src.length <= 0) {
       return null;
     }

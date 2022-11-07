@@ -13,7 +13,7 @@ import java.io.Reader;
  */
 public class GsonUtils {
 
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     /**
      * 在格式错误时不抛异常, 返回null, 为了处理服务器500+的情况, 会返回一个普通字符串

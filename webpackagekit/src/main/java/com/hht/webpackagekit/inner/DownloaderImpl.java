@@ -17,7 +17,7 @@ import com.liulishuo.filedownloader.model.FileDownloadStatus;
  * 下载器实现类
  */
 public class DownloaderImpl implements Downloader {
-    private Context context;
+    private final Context context;
     private String downloadUrl;
 
     public DownloaderImpl(Context context) {

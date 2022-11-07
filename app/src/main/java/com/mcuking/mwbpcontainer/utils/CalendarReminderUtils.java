@@ -22,16 +22,16 @@ import java.util.TimeZone;
 public class CalendarReminderUtils {
     private static final String TAG = "CalendarReminderUtils";
 
-    private static String CALENDER_URL = "content://com.android.calendar/calendars";
-    private static String CALENDER_EVENT_URL = "content://com.android.calendar/events";
-    private static String CALENDER_REMINDER_URL = "content://com.android.calendar/reminders";
+    private static final String CALENDER_URL = "content://com.android.calendar/calendars";
+    private static final String CALENDER_EVENT_URL = "content://com.android.calendar/events";
+    private static final String CALENDER_REMINDER_URL = "content://com.android.calendar/reminders";
 
-    private static String CALENDARS_NAME = "mwbp";
-    private static String CALENDARS_ACCOUNT_NAME = "mcuking.tang@gmail.com";
-    private static String CALENDARS_ACCOUNT_TYPE = "com.mcuking.mwbpContainer";
-    private static String CALENDARS_DISPLAY_NAME = "mwbp";
+    private static final String CALENDARS_NAME = "mwbp";
+    private static final String CALENDARS_ACCOUNT_NAME = "mcuking.tang@gmail.com";
+    private static final String CALENDARS_ACCOUNT_TYPE = "com.mcuking.mwbpContainer";
+    private static final String CALENDARS_DISPLAY_NAME = "mwbp";
 
-    private static Context context = MWBPApplication.getGlobalContext();
+    private static final Context context = MWBPApplication.getGlobalContext();
 
 
     /**

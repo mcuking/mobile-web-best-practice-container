@@ -21,7 +21,7 @@ import java.io.InputStream;
  * asset 资源加载
  */
 public class AssetResourceLoaderImpl implements AssetResourceLoader {
-    private Context context;
+    private final Context context;
 
     public AssetResourceLoaderImpl(Context context) {
         this.context = context;
@@ -110,9 +110,6 @@ public class AssetResourceLoaderImpl implements AssetResourceLoader {
         try {
             inputStream = context.getAssets().open(path);
         } catch (IOException e) {
-        }
-        if (inputStream == null) {
-            return null;
         }
         return inputStream;
     }
